@@ -94,7 +94,7 @@ export const HeroSection: React.FC = () => {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
-              className="text-center lg:text-left"
+              className="text-center lg:text-left w-full items-center flex flex-col"
             >
               <h1
                 id="hero-heading"
@@ -109,7 +109,7 @@ export const HeroSection: React.FC = () => {
                 Gen 3 Runtime Defense. Loading...
               </p>
 
-              <form onSubmit={handleSubmit(onSubmit)} className="space-y-3 max-w-sm mx-auto lg:mx-0">
+              <form onSubmit={handleSubmit(onSubmit)} className="space-y-3 w-full max-w-sm">
                 <div>
                   <input
                     type="email"
