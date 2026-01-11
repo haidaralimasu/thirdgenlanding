@@ -83,34 +83,54 @@ export const HeroSection: React.FC = () => {
     <>
       <Toaster position="bottom-center" />
       <section
-        className="relative min-h-screen flex items-center justify-center px-6 py-32 text-center overflow-hidden radial-glow"
+        className="relative h-screen flex items-center justify-center px-6 py-20 text-center overflow-hidden radial-glow"
         aria-labelledby="hero-heading"
       >
         <AnimatedBackground />
-        <div className="max-w-7xl mx-auto w-full relative z-10">
-          <div className="flex flex-col lg:flex-row gap-16 items-center justify-center">
+        <div className="max-w-7xl mx-auto w-full relative z-10 h-full flex items-center">
+          <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-center justify-center w-full">
             {/* Left: Typography */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
-              className="text-center lg:text-left w-full items-center flex flex-col"
+              className="text-center lg:text-left w-full items-center flex flex-col lg:items-start"
             >
+              {/* Overline text */}
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="mb-6 inline-flex items-center gap-2 px-4 py-2 rounded-full border border-accent/30 bg-accent/5"
+              >
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
+                </span>
+                <span className="font-mono text-xs md:text-sm text-accent uppercase tracking-wider">
+                  Gen 3 Runtime Defense
+                </span>
+              </motion.div>
+
               <h1
                 id="hero-heading"
-                className="font-mono text-7xl md:text-8xl lg:text-9xl font-bold mb-4 leading-[1.1] text-white"
+                className="font-mono text-5xl sm:text-6xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-4 lg:mb-6 leading-[1.05]"
               >
-                Security.
+                <span className="bg-gradient-to-r from-white via-white to-white/80 bg-clip-text text-transparent">
+                  Security.
+                </span>
                 <br />
-                Evolved.
+                <span className="bg-gradient-to-r from-accent via-accent to-orange-500 bg-clip-text text-transparent">
+                  Evolved.
+                </span>
               </h1>
 
-              <p className="mb-8 font-mono text-lg md:text-xl text-foreground-secondary">
-                Gen 3 Runtime Defense. Loading...
+              <p className="mb-6 lg:mb-8 font-mono text-sm md:text-base lg:text-lg text-foreground-secondary max-w-xl leading-relaxed">
+                Next-generation runtime protection that adapts, learns, and defends your infrastructure in real-time.
               </p>
 
-              <form onSubmit={handleSubmit(onSubmit)} className="space-y-3 w-full max-w-sm">
-                <div>
+              <form onSubmit={handleSubmit(onSubmit)} className="space-y-3 lg:space-y-4 w-full max-w-md">
+                <div className="relative group">
                   <input
                     type="email"
                     placeholder="your@email.com"
@@ -121,22 +141,46 @@ export const HeroSection: React.FC = () => {
                         message: "Invalid email address",
                       },
                     })}
-                    className="w-full bg-transparent border-b border-foreground-tertiary px-4 py-3 font-mono text-sm text-foreground placeholder:text-foreground-secondary/50 focus:border-accent focus:outline-none transition-colors"
+                    className="w-full bg-background/50 backdrop-blur-sm border border-foreground-tertiary px-5 py-4 rounded-lg font-mono text-sm text-foreground placeholder:text-foreground-secondary/50 focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20 transition-all group-hover:border-foreground-secondary/70"
                   />
                   {errors.email && (
-                    <p className="mt-1 text-xs text-red-500 font-mono">
-                      {errors.email.message}
-                    </p>
+                    <motion.p
+                      initial={{ opacity: 0, y: -5 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="mt-2 text-xs text-red-500 font-mono flex items-center gap-1"
+                    >
+                      <span>⚠</span> {errors.email.message}
+                    </motion.p>
                   )}
                 </div>
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-accent hover:bg-accent/90 text-background px-6 py-3 rounded font-mono text-sm font-bold transition-colors disabled:opacity-50"
+                  className="w-full bg-accent hover:bg-accent/90 text-background px-6 py-4 rounded-lg font-mono text-sm font-bold transition-all disabled:opacity-50 disabled:cursor-not-allowed hover:shadow-lg hover:shadow-accent/20 active:scale-[0.98]"
                 >
-                  {isSubmitting ? "Processing..." : "Get Early Access"}
+                  {isSubmitting ? (
+                    <span className="flex items-center justify-center gap-2">
+                      <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                      </svg>
+                      Processing...
+                    </span>
+                  ) : (
+                    "Get Early Access →"
+                  )}
                 </button>
               </form>
+
+              {/* Trust indicator */}
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="mt-4 lg:mt-6 text-xs font-mono text-foreground-secondary/60"
+              >
+                Join 500+ developers in early access
+              </motion.p>
             </motion.div>
 
             {/* Right: Visuals */}
