@@ -4,7 +4,8 @@ import React from "react";
 import { motion } from "framer-motion";
 import { ArrowUp, Clock, Ban } from "lucide-react";
 import { BarChart } from "@/components/charts/BarChart";
-import { TimelineChart } from "@/components/charts/TimelineChart";
+import { PingTimeline } from "@/components/charts/PingTimeline";
+import { GlitchText } from "@/components/GlitchText";
 import { Card } from "@/components/ui/Card";
 
 const problems = [
@@ -13,18 +14,21 @@ const problems = [
     title: "$2.6B LOST",
     description: "The cost of reactive security.",
     chart: <BarChart />,
+    value: "2024",
   },
   {
     icon: Ban,
     title: "80% FAILURE",
     description: "Audits missed the logical errors.",
-    chart: null, // No specific chart for this one yet, or a placeholder
+    chart: <GlitchText text="80%" />,
+    value: "AUDIT COVERAGE",
   },
   {
     icon: Clock,
     title: "1 BLOCK",
     description: "Time to attack.",
-    chart: <TimelineChart />,
+    chart: <PingTimeline />,
+    value: "ATTACK TIME",
   },
 ];
 

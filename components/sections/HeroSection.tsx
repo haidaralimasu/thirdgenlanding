@@ -7,8 +7,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { submitToWaitlist } from "@/app/actions/waitlist";
 import { track } from "@vercel/analytics";
 import AnimatedBackground from "../AnimatedBackground";
-import { SystemSchematic } from "../SystemSchematic";
-import { CodeBlock } from "../CodeBlock";
+import { HolographicDisplay } from "../HolographicDisplay";
 
 interface FormData {
   email: string;
@@ -89,13 +88,13 @@ export const HeroSection: React.FC = () => {
       >
         <AnimatedBackground />
         <div className="max-w-7xl mx-auto w-full relative z-10">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          <div className="flex flex-col lg:flex-row gap-16 items-center justify-center">
             {/* Left: Typography */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
-              className="text-left"
+              className="text-center lg:text-left"
             >
               <h1
                 id="hero-heading"
@@ -110,7 +109,7 @@ export const HeroSection: React.FC = () => {
                 Gen 3 Runtime Defense. Loading...
               </p>
 
-              <form onSubmit={handleSubmit(onSubmit)} className="space-y-3 max-w-sm">
+              <form onSubmit={handleSubmit(onSubmit)} className="space-y-3 max-w-sm mx-auto lg:mx-0">
                 <div>
                   <input
                     type="email"
@@ -145,10 +144,9 @@ export const HeroSection: React.FC = () => {
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="flex flex-col items-center justify-center space-y-8"
+              className="flex items-center justify-center w-full"
             >
-              <SystemSchematic animationState={currentAnimationState} />
-              <CodeBlock animationState={currentAnimationState} />
+              <HolographicDisplay animationState={currentAnimationState} />
             </motion.div>
           </div>
         </div>
