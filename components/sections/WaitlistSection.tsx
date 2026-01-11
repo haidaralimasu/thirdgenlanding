@@ -60,7 +60,7 @@ export const WaitlistSection: React.FC = () => {
   return (
     <>
       <Toaster position="bottom-center" />
-      <section id="waitlist" className="py-24 px-6 border-t border-foreground-secondary/10" aria-labelledby="waitlist-heading">
+      <section id="waitlist" className="py-32 px-6 border-t border-foreground-tertiary" aria-labelledby="waitlist-heading">
         <div className="max-w-xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -69,8 +69,8 @@ export const WaitlistSection: React.FC = () => {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 id="waitlist-heading" className="font-mono text-3xl md:text-5xl font-bold mb-4">
-              Don&apos;t Get Hacked While You Wait
+            <h2 id="waitlist-heading" className="font-mono text-3xl md:text-5xl font-bold mb-4 text-white">
+              Get Early Access.
             </h2>
             <p className="text-foreground-secondary font-mono text-sm md:text-base">
               Join the waitlist for early access
@@ -99,14 +99,14 @@ export const WaitlistSection: React.FC = () => {
                 onFocus={() => setIsFocused(true)}
                 onBlur={() => setIsFocused(false)}
                 className={`
-                  w-full bg-[#1a1a1a] border rounded px-4 py-3
+                  w-full bg-transparent border-b px-4 py-3
                   font-mono text-sm text-foreground
                   placeholder:text-foreground-secondary/50
                   focus:outline-none transition-colors
                   ${
                     isFocused || errors.email
                       ? "border-accent"
-                      : "border-foreground-secondary/20"
+                      : "border-foreground-tertiary"
                   }
                 `}
               />
@@ -137,6 +137,21 @@ export const WaitlistSection: React.FC = () => {
           </motion.p>
         </div>
       </section>
+
+      {/* Footer */}
+      <footer className="py-8 px-6 border-t border-foreground-tertiary">
+        <div className="max-w-7xl mx-auto flex justify-between items-center">
+          <p className="font-mono text-sm text-white">ThirdGen © 2026</p>
+          <div className="flex gap-4 font-mono text-sm text-foreground-secondary">
+            <a href="https://twitter.com/thirdgentech" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
+              Twitter
+            </a>
+            <a href="https://github.com/thirdgentech" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
+              GitHub
+            </a>
+          </div>
+        </div>
+      </footer>
     </>
   );
 };

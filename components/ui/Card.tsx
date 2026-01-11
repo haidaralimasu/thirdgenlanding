@@ -1,25 +1,24 @@
+"use client";
+
 import React from "react";
 import { cn } from "@/lib/utils";
 
-interface CardProps {
+interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
-  className?: string;
-  highlighted?: boolean;
 }
 
 export const Card: React.FC<CardProps> = ({
-  children,
   className,
-  highlighted = false,
+  children,
+  ...props
 }) => {
   return (
     <div
       className={cn(
-        "glass p-8 transition-all duration-300",
-        highlighted && "border-accent/50 shadow-glow",
-        !highlighted && "hover:border-white/20",
+        "bg-[#0A0A0A]/50 backdrop-blur-md border border-white/10 rounded-lg group-hover:border-white/20 transition-colors",
         className
       )}
+      {...props}
     >
       {children}
     </div>

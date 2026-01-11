@@ -2,32 +2,35 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { AlertTriangle } from "lucide-react";
+import { ArrowUp, Clock, Ban } from "lucide-react";
+import { BarChart } from "@/components/charts/BarChart";
+import { TimelineChart } from "@/components/charts/TimelineChart";
+import { Card } from "@/components/ui/Card";
 
-const alerts = [
+const problems = [
   {
-    title: "$2.6 Billion Lost",
-    year: "2024",
-    subtext: "The cost of reactive security.",
-    color: "red",
+    icon: ArrowUp,
+    title: "$2.6B LOST",
+    description: "The cost of reactive security.",
+    chart: <BarChart />,
   },
   {
-    title: "80% Audit Failure",
-    year: "",
-    subtext: "Audits missed the logical errors.",
-    color: "red",
+    icon: Ban,
+    title: "80% FAILURE",
+    description: "Audits missed the logical errors.",
+    chart: null, // No specific chart for this one yet, or a placeholder
   },
   {
-    title: "Current Status",
-    year: "VULNERABLE",
-    subtext: "Your protocol needs active defense.",
-    color: "red",
+    icon: Clock,
+    title: "1 BLOCK",
+    description: "Time to attack.",
+    chart: <TimelineChart />,
   },
 ];
 
 export const ProblemSection: React.FC = () => {
   return (
-    <section className="py-16 px-6 bg-[#0a0a0a]" aria-labelledby="problem-heading">
+    <section className="py-32 px-6" aria-labelledby="problem-heading">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -37,40 +40,37 @@ export const ProblemSection: React.FC = () => {
           className="text-center mb-12"
         >
           <h2 id="problem-heading" className="font-mono text-3xl md:text-4xl font-bold mb-3 text-foreground">
-            Why We&apos;re Building This
+            The Problem
           </h2>
           <p className="text-foreground-secondary font-mono text-sm">
-            The current state of Web3 security
+            Current security paradigms are failing
           </p>
         </motion.div>
 
         <div className="grid md:grid-cols-3 gap-6">
-          {alerts.map((alert, index) => (
+          {problems.map((problem, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
+              className="group"
             >
-              <div className="bg-[#0d0d0d] border-2 border-red-500/30 rounded-lg p-6 hover:border-red-500/50 transition-colors h-full flex flex-col">
-                <div className="flex items-start gap-3 mb-4">
-                  <AlertTriangle className="text-red-500 flex-shrink-0" size={24} />
-                  <div className="flex-1">
-                    <h3 className="font-mono text-xl font-bold text-foreground mb-2">
-                      {alert.title}
+              <Card className="p-6 h-full flex flex-col justify-between">
+                <div className="flex items-start gap-4 mb-4">
+                  {problem.icon && <problem.icon className="w-5 h-5 text-zinc-500 flex-shrink-0" />}
+                  <div>
+                    <h3 className="font-mono text-xl font-bold text-white mb-2">
+                      {problem.title}
                     </h3>
-                    {alert.year && (
-                      <div className="inline-block bg-red-500/20 text-red-400 px-2 py-0.5 rounded font-mono text-xs font-bold">
-                        {alert.year}
-                      </div>
-                    )}
+                    <p className="text-foreground-secondary font-mono text-sm leading-relaxed">
+                      {problem.description}
+                    </p>
                   </div>
                 </div>
-                <p className="text-foreground-secondary font-mono text-sm leading-relaxed mt-auto">
-                  {alert.subtext}
-                </p>
-              </div>
+                {problem.chart && <div className="mt-4">{problem.chart}</div>}
+              </Card>
             </motion.div>
           ))}
         </div>

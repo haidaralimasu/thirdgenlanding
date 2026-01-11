@@ -10,23 +10,26 @@ const config: Config = {
     extend: {
       colors: {
         background: {
-          DEFAULT: "#050505",
-          dark: "#0A0A0A",
+          DEFAULT: "#000",
         },
         foreground: {
-          DEFAULT: "#EDEDED",
-          secondary: "#888888",
+          DEFAULT: "#fff",
+          secondary: "#666",
+          tertiary: "#333",
+        },
+        border: {
+          DEFAULT: "#222",
         },
         accent: {
           DEFAULT: "#FF8700",
         },
       },
       fontFamily: {
-        mono: ["var(--font-jetbrains-mono)", "monospace"],
-        sans: ["var(--font-inter)", "sans-serif"],
+        mono: ["var(--font-geist-mono)", "monospace"],
+        sans: ["var(--font-geist-sans)", "sans-serif"],
       },
-      boxShadow: {
-        glow: "0 0 20px rgba(255, 135, 0, 0.3)",
+      spacing: {
+        "32": "8rem",
       },
     },
   },

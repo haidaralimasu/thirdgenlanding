@@ -3,41 +3,38 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { GitBranch, Radar, Shield } from "lucide-react";
+import { Card } from "@/components/ui/Card";
 
 const products = [
   {
-    icon: GitBranch,
-    tag: "[ CI ]",
-    name: "Code Review",
-    title: "AI Code Review",
+    id: "01",
+    name: "CI Review",
     description: "Catches logic errors in PRs.",
     status: "Beta Ready",
-    statusColor: "green",
+    statusColor: "bg-green-500",
+    icon: GitBranch,
   },
   {
-    icon: Radar,
-    tag: "[ LIVE ]",
-    name: "Mempool Monitor",
-    title: "Anomaly Detection",
+    id: "02",
+    name: "Mempool",
     description: "Tracks 50% TVL movements.",
-    status: "In Development",
-    statusColor: "yellow",
+    status: "Dev",
+    statusColor: "bg-yellow-500",
+    icon: Radar,
   },
   {
-    icon: Shield,
-    tag: "[ RUNTIME ]",
-    name: "Invariant Defense",
-    title: "Invariant Firewall",
+    id: "03",
+    name: "Runtime",
     description: "The Kill Switch. Reverts hacks instantly.",
     status: "Coming Soon",
-    statusColor: "grey",
-    comingSoon: true,
+    statusColor: "bg-foreground-secondary",
+    icon: Shield,
   },
 ];
 
 export const StackSection: React.FC = () => {
   return (
-    <section className="py-24 px-6" aria-labelledby="stack-heading">
+    <section className="py-32 px-6" aria-labelledby="stack-heading">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -66,54 +63,28 @@ export const StackSection: React.FC = () => {
                 viewport={{ once: true }}
                 className="group"
               >
-                <div
-                  className={`
-                    relative h-full
-                    bg-black/40 backdrop-blur-sm
-                    border rounded-lg
-                    transition-all duration-300
-                    border-white/10 hover:border-white/30
-                    ${product.comingSoon ? "opacity-60" : "opacity-100"}
-                    p-8
-                  `}
-                >
-                  <div className="absolute -top-3 right-4 flex items-center gap-2 bg-background border border-foreground-secondary/20 px-3 py-1 rounded font-mono text-xs">
-                    <div
-                      className={`w-2 h-2 rounded-full ${
-                        product.statusColor === "green"
-                          ? "bg-green-500"
-                          : product.statusColor === "yellow"
-                          ? "bg-yellow-500 animate-pulse"
-                          : "bg-foreground-secondary/50"
-                      }`}
-                    />
-                    <span className="text-foreground-secondary font-bold">
-                      {product.status}
-                    </span>
-                  </div>
-
-                  <div className="flex flex-col h-full">
-                    <div className="w-12 h-12 rounded-lg flex items-center justify-center mb-6 bg-white/5 text-foreground-secondary group-hover:text-foreground transition-colors">
-                      <Icon size={24} />
+                <Card className="p-6 relative overflow-hidden h-full">
+                  <Icon className="absolute -right-10 -bottom-10 w-48 h-48 text-zinc-500 opacity-10" />
+                  <div className="relative z-10 flex flex-col h-full">
+                    <div className="flex items-center justify-between mb-4">
+                      <span className="font-mono text-sm text-foreground-secondary">
+                        [{product.id}]
+                      </span>
+                      <div className="flex items-center gap-2">
+                        <span className={`w-2 h-2 rounded-full ${product.statusColor}`} />
+                        <span className="font-mono text-sm text-foreground-secondary">
+                          {product.status}
+                        </span>
+                      </div>
                     </div>
-
-                    <div className="font-mono text-xs text-foreground-secondary mb-2 tracking-wider">
-                      {product.tag}
-                    </div>
-
-                    <h3 className="font-mono text-sm text-foreground-secondary/70 mb-1">
+                    <h3 className="font-mono text-xl font-bold text-white mb-2">
                       {product.name}
                     </h3>
-
-                    <h4 className="font-mono text-2xl font-bold mb-4 text-foreground">
-                      {product.title}
-                    </h4>
-
-                    <p className="font-mono text-sm text-foreground-secondary leading-relaxed">
+                    <p className="font-mono text-sm text-foreground-secondary leading-relaxed flex-grow">
                       {product.description}
                     </p>
                   </div>
-                </div>
+                </Card>
               </motion.div>
             );
           })}

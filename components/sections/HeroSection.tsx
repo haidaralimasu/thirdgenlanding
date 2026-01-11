@@ -1,26 +1,23 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import toast, { Toaster } from "react-hot-toast";
 import { submitToWaitlist } from "@/app/actions/waitlist";
 import { track } from "@vercel/analytics";
+import AnimatedBackground from "../AnimatedBackground";
+import { SystemSchematic } from "../SystemSchematic";
+import { CodeBlock } from "../CodeBlock";
 
 interface FormData {
   email: string;
 }
 
-const terminalLines = [
-  { text: "> Initializing Invariant Engine...", status: "OK", delay: 0 },
-  { text: "> Connecting to Mempool...", status: "PENDING", delay: 1 },
-  { text: "> Loading Security Protocols...", status: "OK", delay: 2 },
-  { text: "> System Status:", status: "LOADING", delay: 3 },
-];
-
 export const HeroSection: React.FC = () => {
-  const [visibleLines, setVisibleLines] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [currentAnimationState, setCurrentAnimationState] = useState("idle");
+
   const {
     register,
     handleSubmit,
@@ -28,13 +25,23 @@ export const HeroSection: React.FC = () => {
     reset,
   } = useForm<FormData>();
 
-  React.useEffect(() => {
-    const timer = setInterval(() => {
-      setVisibleLines((prev) =>
-        prev < terminalLines.length ? prev + 1 : prev
-      );
-    }, 800);
-    return () => clearInterval(timer);
+  useEffect(() => {
+    const sequence = async () => {
+      while (true) {
+        setCurrentAnimationState("phase1"); // SystemSchematic pulse to Scanner, CodeBlock red highlight
+        await new Promise((resolve) => setTimeout(resolve, 2000));
+
+        setCurrentAnimationState("phase2"); // SystemSchematic pulse to Block, CodeBlock green highlight
+        await new Promise((resolve) => setTimeout(resolve, 2000));
+
+        setCurrentAnimationState("reset"); // Reset for loop
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+
+        setCurrentAnimationState("idle"); // Pause before repeating
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+      }
+    };
+    sequence();
   }, []);
 
   const onSubmit = async (data: FormData) => {
@@ -77,40 +84,33 @@ export const HeroSection: React.FC = () => {
     <>
       <Toaster position="bottom-center" />
       <section
-        className="min-h-screen flex items-center justify-center px-6 pt-20"
+        className="relative min-h-screen flex items-center justify-center px-6 py-32 text-center overflow-hidden radial-glow"
         aria-labelledby="hero-heading"
       >
-        <div className="max-w-7xl mx-auto w-full">
+        <AnimatedBackground />
+        <div className="max-w-7xl mx-auto w-full relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             {/* Left: Typography */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
+              className="text-left"
             >
               <h1
                 id="hero-heading"
-                className="font-mono text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-[1.1]"
+                className="font-mono text-7xl md:text-8xl lg:text-9xl font-bold mb-4 leading-[1.1] text-white"
               >
-                Security Is <span className="text-accent">Evolving.</span>
+                Security.
+                <br />
+                Evolved.
               </h1>
 
-              <div className="space-y-3 mb-8 font-mono text-lg md:text-xl text-foreground-secondary">
-                <p>Gen 1 was Audits.</p>
-                <p>Gen 2 was Monitoring.</p>
-                <p className="text-foreground text-2xl font-bold flex items-center gap-2">
-                  <span className="text-accent">Gen 3 is Loading</span>
-                  <motion.span
-                    animate={{ opacity: [1, 0, 1] }}
-                    transition={{ duration: 1.5, repeat: Infinity }}
-                    className="text-accent"
-                  >
-                    ...
-                  </motion.span>
-                </p>
-              </div>
+              <p className="mb-8 font-mono text-lg md:text-xl text-foreground-secondary">
+                Gen 3 Runtime Defense. Loading...
+              </p>
 
-              <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
+              <form onSubmit={handleSubmit(onSubmit)} className="space-y-3 max-w-sm">
                 <div>
                   <input
                     type="email"
@@ -122,7 +122,7 @@ export const HeroSection: React.FC = () => {
                         message: "Invalid email address",
                       },
                     })}
-                    className="w-full bg-[#1a1a1a] border border-foreground-secondary/20 rounded px-4 py-3 font-mono text-sm text-foreground placeholder:text-foreground-secondary/50 focus:border-accent focus:outline-none transition-colors"
+                    className="w-full bg-transparent border-b border-foreground-tertiary px-4 py-3 font-mono text-sm text-foreground placeholder:text-foreground-secondary/50 focus:border-accent focus:outline-none transition-colors"
                   />
                   {errors.email && (
                     <p className="mt-1 text-xs text-red-500 font-mono">
@@ -140,71 +140,15 @@ export const HeroSection: React.FC = () => {
               </form>
             </motion.div>
 
-            {/* Right: Terminal */}
+            {/* Right: Visuals */}
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="bg-[#0d0d0d] border border-foreground-secondary/20 rounded-lg overflow-hidden"
+              className="flex flex-col items-center justify-center space-y-8"
             >
-              <div className="bg-[#1a1a1a] border-b border-foreground-secondary/20 px-4 py-2 flex items-center gap-2">
-                <div className="w-3 h-3 rounded-full bg-red-500" />
-                <div className="w-3 h-3 rounded-full bg-yellow-500" />
-                <div className="w-3 h-3 rounded-full bg-green-500" />
-                <span className="ml-2 font-mono text-xs text-foreground-secondary">
-                  system.terminal
-                </span>
-              </div>
-
-              <div className="p-6 font-mono text-sm leading-relaxed space-y-2 min-h-[300px]">
-                {terminalLines.map((line, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{
-                      opacity: index < visibleLines ? 1 : 0,
-                      x: index < visibleLines ? 0 : -10,
-                    }}
-                    transition={{ duration: 0.3 }}
-                    className="flex items-center gap-3"
-                  >
-                    <span className="text-foreground-secondary">
-                      {line.text}
-                    </span>
-                    {index < visibleLines && (
-                      <span
-                        className={`text-xs font-bold px-2 py-0.5 rounded ${
-                          line.status === "OK"
-                            ? "bg-green-500/20 text-green-400"
-                            : line.status === "PENDING"
-                            ? "bg-yellow-500/20 text-yellow-400"
-                            : "bg-accent/20 text-accent"
-                        }`}
-                      >
-                        [{line.status}]
-                      </span>
-                    )}
-                  </motion.div>
-                ))}
-
-                {visibleLines >= terminalLines.length && (
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.5 }}
-                    className="mt-4 pt-4 border-t border-foreground-secondary/20"
-                  >
-                    <div className="flex items-center gap-2">
-                      <motion.div
-                        animate={{ scale: [1, 1.2, 1] }}
-                        transition={{ duration: 1.5, repeat: Infinity }}
-                        className="w-2 h-2 rounded-full bg-accent"
-                      />
-                      <span className="text-accent font-bold">LOADING...</span>
-                    </div>
-                  </motion.div>
-                )}
-              </div>
+              <SystemSchematic animationState={currentAnimationState} />
+              <CodeBlock animationState={currentAnimationState} />
             </motion.div>
           </div>
         </div>

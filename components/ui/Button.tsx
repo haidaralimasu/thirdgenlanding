@@ -1,33 +1,25 @@
+"use client";
+
 import React from "react";
 import { cn } from "@/lib/utils";
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: "primary" | "outline";
-  children: React.ReactNode;
-}
-
-export const Button: React.FC<ButtonProps> = ({
-  variant = "primary",
-  className,
-  children,
-  ...props
-}) => {
-  const baseStyles =
-    "px-6 py-3 font-mono text-sm transition-all duration-200 font-medium";
-
-  const variants = {
-    primary:
-      "bg-accent text-background hover:bg-accent/90 hover:shadow-glow",
-    outline:
-      "border-2 border-accent text-accent bg-transparent hover:bg-accent hover:text-background hover:shadow-glow",
-  };
-
+const Button = React.forwardRef<
+  HTMLButtonElement,
+  React.ButtonHTMLAttributes<HTMLButtonElement>
+>(({ className, ...props }, ref) => {
   return (
     <button
-      className={cn(baseStyles, variants[variant], className)}
+      className={cn(
+        "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+        "bg-accent text-background hover:bg-accent/90",
+        "h-10 px-4 py-2",
+        className
+      )}
+      ref={ref}
       {...props}
-    >
-      {children}
-    </button>
+    />
   );
-};
+});
+Button.displayName = "Button";
+
+export { Button };
