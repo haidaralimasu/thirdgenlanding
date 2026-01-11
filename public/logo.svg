@@ -1,0 +1,16 @@
+<svg width="240" height="240" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="240" height="240" fill="#050505"/>
+
+  <!-- Gen 1: First Monolith (Grey) -->
+  <rect x="60" y="70" width="28" height="110" fill="#EDEDED"/>
+
+  <!-- Gen 2: Second Monolith (White) -->
+  <rect x="106" y="70" width="28" height="110" fill="#FFFFFF"/>
+
+  <!-- Gen 3: Third Monolith (McLaren Orange) -->
+  <rect x="152" y="70" width="28" height="110" fill="#FF8700"/>
+
+  <!-- Top accent line on third pillar -->
+  <rect x="152" y="65" width="28" height="3" fill="#FF8700" opacity="0.6"/>
+</svg>

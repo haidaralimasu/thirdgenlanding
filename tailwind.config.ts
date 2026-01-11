@@ -9,8 +9,24 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        background: {
+          DEFAULT: "#050505",
+          dark: "#0A0A0A",
+        },
+        foreground: {
+          DEFAULT: "#EDEDED",
+          secondary: "#888888",
+        },
+        accent: {
+          DEFAULT: "#FF8700",
+        },
+      },
+      fontFamily: {
+        mono: ["var(--font-jetbrains-mono)", "monospace"],
+        sans: ["var(--font-inter)", "sans-serif"],
+      },
+      boxShadow: {
+        glow: "0 0 20px rgba(255, 135, 0, 0.3)",
       },
     },
   },

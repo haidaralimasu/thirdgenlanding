@@ -1,36 +1,118 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ThirdGen Landing Page
+
+A next-generation Web3 security suite landing page built with Next.js 14, featuring industrial design and terminal aesthetics.
+
+## Features
+
+- **Industrial Design**: Deep dark mode with McLaren Orange accents
+- **Smooth Animations**: Framer Motion for subtle, mechanical movements
+- **Terminal Typing Effect**: Dynamic hero subtitle with typing animation
+- **Glassmorphism Cards**: Modern UI with backdrop blur effects
+- **Responsive Design**: Mobile-first approach with Tailwind CSS
+- **Analytics Integration**: Vercel Analytics with event tracking
+- **Form Handling**: React Hook Form with server actions
+- **CMS Ready**: Sanity.io schema included (optional)
+
+## Tech Stack
+
+- **Framework**: Next.js 14 (App Router)
+- **Styling**: Tailwind CSS
+- **Animation**: Framer Motion
+- **Forms**: React Hook Form
+- **Analytics**: Vercel Analytics
+- **CMS**: Sanity.io (optional)
+- **Fonts**: JetBrains Mono & Inter
 
 ## Getting Started
 
-First, run the development server:
+1. **Install dependencies**:
+   ```bash
+   yarn install
+   ```
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+2. **Run the development server**:
+   ```bash
+   yarn dev
+   ```
+
+3. **Open your browser**:
+   Navigate to [http://localhost:3000](http://localhost:3000)
+
+## Project Structure
+
+```
+thirdgen-landing/
+├── app/
+│   ├── actions/          # Server actions
+│   ├── layout.tsx        # Root layout with fonts
+│   └── page.tsx          # Main landing page
+├── components/
+│   ├── ui/               # Reusable UI components
+│   │   ├── Button.tsx
+│   │   ├── Input.tsx
+│   │   └── Card.tsx
+│   ├── sections/         # Page sections
+│   │   ├── HeroSection.tsx
+│   │   ├── EvolutionSection.tsx
+│   │   ├── StackSection.tsx
+│   │   └── WaitlistSection.tsx
+│   └── Navigation.tsx
+├── lib/
+│   ├── content.ts        # Default content
+│   ├── sanity.ts         # Sanity client (optional)
+│   └── utils.ts          # Utility functions
+└── sanity/
+    └── schema/           # Sanity schemas
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Design System
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Colors
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Background**: `#050505` (Almost black)
+- **Background Dark**: `#0A0A0A`
+- **Foreground**: `#EDEDED` (Off-white)
+- **Secondary**: `#888888` (Industrial grey)
+- **Accent**: `#FF8700` (McLaren Orange)
 
-## Learn More
+### Typography
 
-To learn more about Next.js, take a look at the following resources:
+- **Headers**: JetBrains Mono (monospace)
+- **Body**: Inter (sans-serif)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Components
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+All components are highly modular and mobile-responsive:
 
-## Deploy on Vercel
+- **Navigation**: Sticky header with smooth scroll
+- **Hero**: Large typography with typing effect
+- **Evolution**: 3-column grid comparing security generations
+- **Stack**: Product cards with glassmorphism
+- **Waitlist**: Form with validation and toast notifications
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Sanity CMS Integration (Optional)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Create a Sanity project at [sanity.io](https://sanity.io)
+2. Copy `.env.example` to `.env.local`
+3. Add your Sanity project ID and dataset
+4. Use the schema in `sanity/schema/landingPage.ts`
+
+## Deployment
+
+Deploy to Vercel:
+
+```bash
+vercel
+```
+
+Or push to GitHub and connect to Vercel for automatic deployments.
+
+## Analytics
+
+Vercel Analytics is integrated and tracks:
+- Page views
+- Sign up events (waitlist submissions)
+
+## License
+
+All rights reserved © ThirdGen
