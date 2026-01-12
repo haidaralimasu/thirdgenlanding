@@ -98,7 +98,10 @@ export const WaitlistSection: React.FC = () => {
               </span>
             </motion.div>
 
-            <h2 id="waitlist-heading" className="font-mono text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6">
+            <h2
+              id="waitlist-heading"
+              className="font-mono text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6"
+            >
               <span className="bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">
                 Ready to Evolve
               </span>
@@ -108,7 +111,8 @@ export const WaitlistSection: React.FC = () => {
               </span>
             </h2>
             <p className="text-foreground-secondary font-mono text-base md:text-lg lg:text-xl max-w-2xl mx-auto leading-relaxed">
-              Be among the first to experience next-generation runtime protection
+              Be among the first to experience next-generation runtime
+              protection
             </p>
           </motion.div>
 
@@ -155,11 +159,6 @@ export const WaitlistSection: React.FC = () => {
                 className="space-y-4"
               >
                 <div className="relative group/input">
-                  <div className="absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none">
-                    <Mail className={`w-5 h-5 transition-colors duration-300 ${
-                      isFocused ? 'text-accent' : 'text-foreground-tertiary'
-                    }`} />
-                  </div>
                   <input
                     type="email"
                     placeholder="Enter your email address"
@@ -211,8 +210,20 @@ export const WaitlistSection: React.FC = () => {
                   {isSubmitting ? (
                     <>
                       <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
-                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
-                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                        <circle
+                          className="opacity-25"
+                          cx="12"
+                          cy="12"
+                          r="10"
+                          stroke="currentColor"
+                          strokeWidth="4"
+                          fill="none"
+                        />
+                        <path
+                          className="opacity-75"
+                          fill="currentColor"
+                          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                        />
                       </svg>
                       <span>Joining Waitlist...</span>
                     </>
@@ -252,10 +263,20 @@ export const WaitlistSection: React.FC = () => {
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <p className="font-mono text-sm text-white">ThirdGen © 2026</p>
           <div className="flex gap-4 font-mono text-sm text-foreground-secondary">
-            <a href="https://twitter.com/thirdgentech" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
+            <a
+              href="https://twitter.com/thirdgentech"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white transition-colors"
+            >
               Twitter
             </a>
-            <a href="https://github.com/thirdgentech" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
+            <a
+              href="https://github.com/thirdgentech"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white transition-colors"
+            >
               GitHub
             </a>
           </div>
