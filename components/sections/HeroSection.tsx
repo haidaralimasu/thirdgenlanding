@@ -83,12 +83,12 @@ export const HeroSection: React.FC = () => {
     <>
       <Toaster position="bottom-center" />
       <section
-        className="relative h-screen flex items-center justify-center px-6 py-20 text-center overflow-hidden radial-glow"
+        className="relative min-h-screen flex items-center justify-center px-6 py-20 md:py-24 text-center overflow-hidden radial-glow"
         aria-labelledby="hero-heading"
       >
         <AnimatedBackground />
-        <div className="max-w-7xl mx-auto w-full relative z-10 h-full flex items-center">
-          <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-center justify-center w-full">
+        <div className="max-w-7xl mx-auto w-full relative z-10 min-h-full flex items-center">
+          <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-center justify-center w-full py-8 md:py-0">
             {/* Left: Typography */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
@@ -114,7 +114,7 @@ export const HeroSection: React.FC = () => {
 
               <h1
                 id="hero-heading"
-                className="font-mono text-5xl sm:text-6xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-4 lg:mb-6 leading-[1.05]"
+                className="font-mono text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-4 lg:mb-6 leading-[1.1] md:leading-[1.05]"
               >
                 <span className="bg-gradient-to-r from-white via-white to-white/80 bg-clip-text text-transparent">
                   Security.
@@ -125,12 +125,12 @@ export const HeroSection: React.FC = () => {
                 </span>
               </h1>
 
-              <p className="mb-6 lg:mb-8 font-mono text-sm md:text-base lg:text-lg text-foreground-secondary max-w-xl leading-relaxed">
+              <p className="mb-6 lg:mb-8 font-mono text-sm sm:text-base md:text-base lg:text-lg text-foreground-secondary max-w-xl leading-relaxed px-4 sm:px-0">
                 Next-generation runtime protection that adapts, learns, and defends your infrastructure in real-time.
               </p>
 
-              <form onSubmit={handleSubmit(onSubmit)} className="space-y-3 lg:space-y-4 w-full max-w-md">
-                <div className="relative group">
+              <form onSubmit={handleSubmit(onSubmit)} className="w-full max-w-md space-y-3 lg:space-y-4">
+                <div className="relative">
                   <input
                     type="email"
                     placeholder="your@email.com"
@@ -141,13 +141,13 @@ export const HeroSection: React.FC = () => {
                         message: "Invalid email address",
                       },
                     })}
-                    className="w-full bg-background/50 backdrop-blur-sm border border-foreground-tertiary px-5 py-4 rounded-lg font-mono text-sm text-foreground placeholder:text-foreground-secondary/50 focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20 transition-all group-hover:border-foreground-secondary/70"
+                    className="w-full bg-background/50 backdrop-blur-sm border border-foreground-tertiary px-5 py-4 rounded-lg font-mono text-sm text-foreground placeholder:text-foreground-secondary/50 focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20 transition-all hover:border-foreground-secondary/70"
                   />
                   {errors.email && (
                     <motion.p
-                      initial={{ opacity: 0, y: -5 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      className="mt-2 text-xs text-red-500 font-mono flex items-center gap-1"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      className="absolute -bottom-6 left-0 text-xs text-red-500 font-mono flex items-center gap-1"
                     >
                       <span>⚠</span> {errors.email.message}
                     </motion.p>

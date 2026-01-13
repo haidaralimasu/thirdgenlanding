@@ -12,6 +12,13 @@ export const metadata: Metadata = {
     template: "%s | ThirdGen"
   },
   description: "ThirdGen provides runtime enforcement for Web3 protocols. Move beyond traditional audits with AI-powered code review, mempool monitoring, and invariant firewalls. Join the waitlist for early access.",
+  icons: {
+    icon: [
+      { url: '/logo.svg', type: 'image/svg+xml' },
+      { url: '/favicon.ico', sizes: 'any' }
+    ],
+    apple: '/logo.svg',
+  },
   keywords: [
     "Web3 Security",
     "Smart Contract Security",

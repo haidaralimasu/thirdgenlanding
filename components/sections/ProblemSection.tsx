@@ -74,7 +74,7 @@ export const ProblemSection: React.FC = () => {
           </h2>
           <p className="text-foreground-secondary font-mono text-base md:text-lg lg:text-xl max-w-2xl mx-auto leading-relaxed">
             Current security paradigms are failing.{" "}
-            <span className="text-red-400">The numbers don't lie.</span>
+            <span className="text-red-400">The numbers don&apos;t lie.</span>
           </p>
         </motion.div>
 
@@ -181,7 +181,7 @@ export const ProblemSection: React.FC = () => {
           className="text-center mt-12 md:mt-16"
         >
           <p className="font-mono text-sm md:text-base text-foreground-secondary/80">
-            It's time for a{" "}
+            It&apos;s time for a{" "}
             <span className="text-accent font-semibold">new paradigm</span>
           </p>
         </motion.div>
